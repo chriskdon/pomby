@@ -1,5 +1,5 @@
 {
-  "name": "thetavault",
+  "name": "pomby",
   "version": "0.1.0",
   "dependencies": {
     "moment": "~2.8.3",

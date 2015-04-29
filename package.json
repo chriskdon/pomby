@@ -1,5 +1,5 @@
 {
-  "name": "thetavault",
+  "name": "pomby",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -28,6 +28,7 @@
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
+    "gulp-less": "^3.0.3",
     "gulp-react": "^3.0.1",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0"
