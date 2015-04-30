@@ -1,0 +1,10 @@
+{
+    "sortDirsFirst": true,
+
+    "language": {
+        "javascript": {
+            "linting.prefer": ["JSXHint"],
+            "linting.usePreferredOnly": true
+        }
+    }
+}

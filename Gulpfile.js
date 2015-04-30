@@ -8,10 +8,10 @@ var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
 
 var paths = {
-    js: ['javascript/main.jsx', 'javascript/UI/**/*'],
+    js: ['javascript/main.jsx', 'javascript/UI/**/*', 'javascript/data/**/*'],
     min_out: "vault.min.js",
 
-    js_login: ['javascript/login.jsx', 'javascript/UI/**/*'],
+    js_login: ['javascript/login.jsx', 'javascript/UI/**/*', 'javascript/data/**/*'],
     login_min_out: "login.min.js",
 
     libs: ['compiled/react/react.min.js'],
