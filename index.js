@@ -47,7 +47,7 @@ app.use(express.static(__dirname + '/compiled'));
 
 // Dev Logging =================================================================
 if ('development' === app.get('env')) {
-    app.use(morgan('combined'));
+    //app.use(morgan('combined'));
     //app.use(express.logger('dev'));
     //app.use(express.errorHandler());
 }
@@ -56,6 +56,7 @@ if ('development' === app.get('env')) {
 require('./app/routes')(app);
 
 // Server Startup ==============================================================
+var http = require('http').Server(app);
 var server = app.listen(config.port, function () {
 
     var host = server.address().address;
@@ -63,4 +64,13 @@ var server = app.listen(config.port, function () {
 
     console.log('The magic happens at: http://%s:%s', host, port);
 
+});
+
+// Socket Commander ============================================================,
+var io = require('socket.io')(server);
+io.on('connection', function(socket){
+    console.log('a user connected');
+    socket.on('disconnect', function(){
+        console.log('user disconnected');
+    });
 });

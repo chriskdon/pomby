@@ -24,7 +24,8 @@ var paths = {
 gulp.task('default', ['watch']);
 
 gulp.task('watch', ['js:login', 'js:main', 'less'], function(){
-    gulp.watch(paths.js, ['js:login', 'js:main']);
+    gulp.watch(paths.js, ['js:main']);
+    gulp.watch(paths.js_login, ['js:login']);
     gulp.watch(paths.less_watch, ['less']);
 });
 
