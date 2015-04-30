@@ -3,9 +3,11 @@ var react = require('gulp-react');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
+var cssmin = require('gulp-cssmin');
 var sourcemaps = require('gulp-sourcemaps');
 var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
+var size = require('gulp-size');
 
 var paths = {
     js: ['javascript/main.jsx', 'javascript/UI/**/*', 'javascript/data/**/*'],
@@ -39,6 +41,7 @@ gulp.task('js:login', function () {
             .pipe(react())
             .pipe(concat(paths.login_min_out))
             .pipe(uglify(paths.login_min_out))
+            .pipe(size({title: paths.login_min_out, gzip: true}))
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest(paths.dest))
         .pipe(livereload());
@@ -50,6 +53,7 @@ gulp.task('js:main', function () {
             .pipe(react())
             .pipe(concat(paths.min_out))
             .pipe(uglify(paths.min_out))
+            .pipe(size({title: paths.min_out, gzip: true}))
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest(paths.dest))
         .pipe(livereload());
@@ -65,6 +69,8 @@ gulp.task('less', function () {
     return gulp.src(paths.less)
         .pipe(sourcemaps.init())
             .pipe(less())
+            .pipe(cssmin())
+            .pipe(size({title: "less", gzip: true}))
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest(paths.dest))
         .pipe(livereload());

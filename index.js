@@ -8,6 +8,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
+    compression = require('compression'),
     morgan = require('morgan');
 
 // Configuration ===============================================================
@@ -43,6 +44,7 @@ app.use(session({
 //app.use(app.get("passport").session());
 
 // Static files
+app.use(compression());
 app.use(express.static(__dirname + '/static'));
 app.use(express.static(__dirname + '/compiled'));
 
@@ -57,7 +59,7 @@ if ('development' === app.get('env')) {
 require('./app/routes')(app);
 
 // Server Startup ==============================================================
-var http = require('http').Server(app);
+//var http = require('http').Server(app);
 var server = app.listen(config.port, function () {
 
     var host = server.address().address;
