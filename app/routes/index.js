@@ -1,4 +1,9 @@
 module.exports = function(app){
-    app.use('/', require('./root'));
+
+    app.use('/auth', require('./auth')(app));
+
     app.use('/people', require('./people'));
+
+    app.use('/', require('./root'));
+
 }

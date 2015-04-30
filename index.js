@@ -26,6 +26,8 @@ app.set("db", mongoose);
 
 app.set("models", require('./app/models')(app, mongoose));
 
+app.set("passport", require('./app/auth')(app));
+
 // parse multi-part forms
 app.use(multer({ dest: './uploads/', includeEmptyFields: true}));
 // parse application/x-www-form-urlencoded
@@ -41,9 +43,9 @@ app.use(session({
                  saveUninitialized: true
                 }));
 
-// Passport for google login
-//app.use(app.get("passport").initialize());
-//app.use(app.get("passport").session());
+// Passport for google & static login
+app.use(app.get("passport").initialize());
+app.use(app.get("passport").session());
 
 // Static files
 app.use(compression());
@@ -52,7 +54,7 @@ app.use(express.static(__dirname + '/compiled'));
 
 // Dev Logging =================================================================
 if ('development' === app.get('env')) {
-    //app.use(morgan('combined'));
+    app.use(morgan('dev'));
     //app.use(express.logger('dev'));
     //app.use(express.errorHandler());
 }
