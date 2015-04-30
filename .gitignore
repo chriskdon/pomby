@@ -1,4 +1,6 @@
 node_modules
 uploads
 compiled
+
+.notes.md
 config/index.js

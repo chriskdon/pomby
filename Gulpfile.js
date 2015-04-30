@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var sourcemaps = require('gulp-sourcemaps');
+var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
 
 var paths = {
@@ -52,6 +53,12 @@ gulp.task('js:main', function () {
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest(paths.dest))
         .pipe(livereload());
+});
+
+gulp.task('lint', function() {
+    return gulp.src(paths.js.concat(paths.js_login))
+        .pipe(jshint({ linter: require('jshint-jsx').JSXHINT }))
+        .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('less', function () {
