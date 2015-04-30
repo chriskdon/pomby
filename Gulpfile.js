@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var less = require('gulp-less');
 var sourcemaps = require('gulp-sourcemaps');
+var livereload = require('gulp-livereload');
 
 var paths = {
     js: ['javascript/main.jsx', 'javascript/UI/**/*'],
@@ -24,6 +25,8 @@ var paths = {
 gulp.task('default', ['watch']);
 
 gulp.task('watch', ['js:login', 'js:main', 'less'], function(){
+    livereload.listen();
+
     gulp.watch(paths.js, ['js:main']);
     gulp.watch(paths.js_login, ['js:login']);
     gulp.watch(paths.less_watch, ['less']);
@@ -36,7 +39,8 @@ gulp.task('js:login', function () {
             .pipe(concat(paths.login_min_out))
             .pipe(uglify(paths.login_min_out))
         .pipe(sourcemaps.write('./map'))
-        .pipe(gulp.dest(paths.dest));
+        .pipe(gulp.dest(paths.dest))
+        .pipe(livereload());
 });
 
 gulp.task('js:main', function () {
@@ -46,7 +50,8 @@ gulp.task('js:main', function () {
             .pipe(concat(paths.min_out))
             .pipe(uglify(paths.min_out))
         .pipe(sourcemaps.write('./map'))
-        .pipe(gulp.dest(paths.dest));
+        .pipe(gulp.dest(paths.dest))
+        .pipe(livereload());
 });
 
 gulp.task('less', function () {
@@ -54,5 +59,6 @@ gulp.task('less', function () {
         .pipe(sourcemaps.init())
             .pipe(less())
         .pipe(sourcemaps.write('./map'))
-        .pipe(gulp.dest(paths.dest));
+        .pipe(gulp.dest(paths.dest))
+        .pipe(livereload());
 });
