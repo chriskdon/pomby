@@ -27,10 +27,15 @@ UI.layout.login = React.createClass({
     render: function() {
         return <div id="page-login">
             <UI.common.loginheader title={this.state.title} />
-            <div id="bodycontainer" className="container">
+            <div id="body-container" className="container">
 
-                <div className="row">
-                    Hello {this.props.name}
+                <div id="login-container" className="row">
+                    <div className="col-xs-12 col-md-6 col-md-offset-3">
+                        <div id="login-block" className="row">
+                            <UI.login.tabs />
+                            <UI.login.peoplesearch />
+                        </div>
+                    </div>
                 </div>
 
             </div>

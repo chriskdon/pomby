@@ -15,14 +15,16 @@ var express = require('express'),
 var config = require('./config');
 
 // Database ====================================================================
-//mongoose.connect(config.db.url);
+mongoose.connect(config.db.url);
 
 // Express =====================================================================
 var app = express();
 
 // Set the big variables
 app.set("config", config);
-//app.set("db", mongoose);
+app.set("db", mongoose);
+
+app.set("models", require('./app/models')(app, mongoose));
 
 // parse multi-part forms
 app.use(multer({ dest: './uploads/', includeEmptyFields: true}));
@@ -34,7 +36,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 // basic sessions
 app.use(session({
-                 secret: 'THETAVAULT_SECRET',
+                 secret: 'POMBY_SECRET',
                  resave: true,
                  saveUninitialized: true
                 }));
