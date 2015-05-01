@@ -33,6 +33,7 @@
     "gulp-jshint": "^1.10.0",
     "gulp-less": "^3.0.3",
     "gulp-livereload": "^3.8.0",
+    "gulp-plumber": "^1.0.0",
     "gulp-react": "^3.0.1",
     "gulp-size": "^1.2.1",
     "gulp-sourcemaps": "^1.5.2",

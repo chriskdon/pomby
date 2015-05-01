@@ -1,4 +1,4 @@
-#login-header{
+#login-header, #header{
 
     h1{
         color: white;
@@ -6,4 +6,36 @@
         font-size: @pom-height-header / 2.8;
     }
 
+}
+
+#topnav{
+    display: inline-block;
+    margin: 0;
+    // margin-left: 30px;
+    padding-left: 0;
+    margin-top: 0.4em;
+
+    li{
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: inline;
+
+    }
+
+    a{
+        display: inline-block;
+        width: 6.5em;
+        text-align: center;
+        color: @pom-color-gray;
+        height: @pom-height-header - 1.32em;
+        margin-right: 0.25em;
+        text-decoration: none;
+
+        &:hover,&.active{
+            color: @pom-color-secondary;
+            text-decoration: none;
+            border-bottom: 3px solid @pom-color-secondary;
+        }
+    }
 }
