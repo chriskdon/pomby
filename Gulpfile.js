@@ -10,13 +10,15 @@ var livereload = require('gulp-livereload');
 var size = require('gulp-size');
 
 var paths = {
-    js: ['javascript/main.jsx', 'javascript/UI/**/*', 'javascript/data/**/*'],
+    js: ['javascript/main.jsx', 'javascript/UI/**/*', 'javascript/data/**/*', 'javascript/lib/**/*'],
     min_out: "vault.min.js",
 
-    js_login: ['javascript/login.jsx', 'javascript/UI/**/*', 'javascript/data/**/*'],
+    js_login: ['javascript/login.jsx', 'javascript/UI/**/*', 'javascript/data/**/*', 'javascript/lib/**/*'],
     login_min_out: "login.min.js",
 
-    libs: ['compiled/react/react.min.js'],
+    libs: ['compiled/lib/react/react.min.js',
+           'compiled/lib/qwest/qwest.min.js',
+           'compiled/lib/underscore/underscore-min.js'],
     libs_min_out: "libs.min.js",
 
     less: ['less/vault.less'],
@@ -27,11 +29,12 @@ var paths = {
 
 gulp.task('default', ['watch']);
 
-gulp.task('watch', ['js:login', 'js:main', 'less'], function(){
+gulp.task('watch', ['js:login', 'js:main', 'js:lib', 'less'], function(){
     livereload.listen();
 
     gulp.watch(paths.js, ['js:main']);
     gulp.watch(paths.js_login, ['js:login']);
+    gulp.watch(paths.libs, ['js:lib']);
     gulp.watch(paths.less_watch, ['less']);
 });
 
@@ -54,6 +57,18 @@ gulp.task('js:main', function () {
             .pipe(concat(paths.min_out))
             .pipe(uglify(paths.min_out))
             .pipe(size({title: paths.min_out, gzip: true}))
+        .pipe(sourcemaps.write('./map'))
+        .pipe(gulp.dest(paths.dest))
+        .pipe(livereload());
+});
+
+gulp.task('js:lib', function () {
+    return gulp.src(paths.libs)
+        .pipe(sourcemaps.init())
+            .pipe(react())
+            .pipe(concat(paths.libs_min_out))
+            .pipe(uglify(paths.libs_min_out))
+            .pipe(size({title: paths.libs_min_out, gzip: true}))
         .pipe(sourcemaps.write('./map'))
         .pipe(gulp.dest(paths.dest))
         .pipe(livereload());
