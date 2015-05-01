@@ -4,7 +4,7 @@ if (typeof(UI) === 'undefined') var UI = {};
 
 if (typeof(UI.common) === 'undefined') UI.common = {};
 
-UI.common.loginheader = React.createClass({
+UI.common.header = React.createClass({
     render: function() {
         return (
             <div id="login-header">

@@ -5,14 +5,10 @@ var path = require('path');
 // Homepage or Login page ======================================================
 router.get('/', function(req, res){
 
-    if (true) {
-
-        res.sendFile(path.join(__dirname + '/../../views/login.html'));
-
-    }else{
-
+    if (req.isAuthenticated()) {
         res.sendFile(path.join(__dirname + '/../../views/home.html'));
-
+    }else{
+        res.sendFile(path.join(__dirname + '/../../views/login.html'));
     }
 
 });
