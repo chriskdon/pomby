@@ -18,7 +18,10 @@ UI.page.home = {
     element: React.createClass({
         render: function() {
             return (
-                <div>Home</div>
+                <div>
+                    <UI.common.dropzone />
+                    <h2>Timeline</h2>
+                </div>
             );
         }
     })

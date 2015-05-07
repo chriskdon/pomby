@@ -57,6 +57,10 @@ UI.layout.container = React.createClass({
             });
     },
 
+    componentWillUnmount: function(){
+        this._eventHashchange.remove();
+    },
+
     render: function() {
         return (
         <div id="page-main">
