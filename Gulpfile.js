@@ -14,7 +14,7 @@ var paths = {
     js: ['javascript/main.jsx', 'javascript/UI/**/*', 'javascript/data/**/*', 'javascript/lib/**/*'],
     min_out: "vault.min.js",
 
-    js_login: ['javascript/login.jsx', 'javascript/UI/**/*', 'javascript/data/**/*', 'javascript/lib/**/*'],
+    js_login: ['javascript/login.jsx', 'javascript/lib/**/*', 'javascript/UI/**/*', 'javascript/data/**/*'],
     login_min_out: "login.min.js",
 
     libs: ['compiled/lib/react/react.min.js',

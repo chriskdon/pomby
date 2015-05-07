@@ -18,9 +18,11 @@ UI.login.peoplelist = React.createClass({
             );
         });
 
-        return <ul id="people-list-small">
-            {peopleNodes}
-        </ul>
+        return (
+            <ul id="people-list-small">
+                {peopleNodes}
+            </ul>
+        )
     }
 
 });
